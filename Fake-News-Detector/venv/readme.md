@@ -1,1 +1,1 @@
-## The files are uploaded as .zip because of larger size
+## The files are uploaded as .rar because of larger size
