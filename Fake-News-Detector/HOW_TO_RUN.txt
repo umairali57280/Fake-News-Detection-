@@ -1,0 +1,81 @@
+================================================================================
+          FAKE NEWS DETECTION SYSTEM — HOW TO RUN
+================================================================================
+Authors  : Arsalan Ahmed Khan, Minhaj Zaib Khan 
+Subject  : Machine Learning (BSCS F23 / 240ML)
+Instructor: Dr. Abid Ali — PAF-IAST Mang Haripur
+================================================================================
+
+
+PREREQUISITES
+─────────────
+  • Python 3.10 or higher
+  • pip (Python package manager)
+  • Dataset files (True.csv & Fake.csv) placed in the data/ folder
+
+
+STEP 1: CREATE A VIRTUAL ENVIRONMENT (optional but recommended)
+───────────────────────────────────────────────────────────────
+  Open a terminal, navigate to the project folder, and run:
+
+    cd "f:\projects\Fake news detection\fake_news_detector"
+    python -m venv venv
+    .\venv\Scripts\activate
+
+
+STEP 2: INSTALL DEPENDENCIES
+─────────────────────────────
+    pip install -r requirements.txt
+
+
+STEP 3: DOWNLOAD NLTK DATA (needed for text preprocessing)
+───────────────────────────────────────────────────────────
+    python -c "import nltk; nltk.download('stopwords'); nltk.download('punkt'); nltk.download('punkt_tab'); nltk.download('wordnet')"
+
+
+STEP 4: TRAIN THE MODEL
+────────────────────────
+    python run_all.py
+
+  This executes the full 4-stage pipeline:
+
+    Stage 1 — Preprocessing : Loads True.csv & Fake.csv from data/, cleans text
+    Stage 2 — Training      : TF-IDF + 5 classifiers with GridSearchCV tuning
+    Stage 3 — Evaluation    : Metrics, confusion matrices, ROC curves
+    Stage 4 — Word Clouds   : Generates visualizations
+
+  Trained models are saved in  : models/
+  All outputs (plots, CSVs) in : outputs/
+
+
+STEP 5: LAUNCH THE WEB APP
+───────────────────────────
+    python app.py
+
+  Then open http://127.0.0.1:5000 in your browser.
+
+
+================================================================================
+                        PROJECT STRUCTURE
+================================================================================
+
+  fake_news_detector/
+  ├── data/                  — Dataset files (True.csv, Fake.csv)
+  ├── models/                — Saved trained models & TF-IDF vectorizer
+  ├── outputs/               — Evaluation results, plots, word clouds
+  │   ├── confusion_matrices/
+  │   ├── roc_curves/
+  │   └── wordclouds/
+  ├── src/                   — Source modules
+  │   ├── preprocess.py      — Data loading & text cleaning
+  │   ├── train.py           — Model training pipeline
+  │   ├── evaluate.py        — Evaluation & metrics
+  │   ├── wordcloud_gen.py   — Word cloud generation
+  │   └── predict.py         — Prediction utilities for the web app
+  ├── templates/             — HTML templates for the Flask web app
+  ├── app.py                 — Flask web application
+  ├── run_all.py             — Master training script (runs all stages)
+  ├── requirements.txt       — Python dependencies
+  └── HOW_TO_RUN.txt         — This file
+
+================================================================================
